@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12Stars Watches - Luxury Timepieces</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a1a2e;
+            --secondary-color: #16213e;
+            --accent-color: #0f3460;
+            --highlight-color: #e94560;
+            --text-color: #f1f1f1;
+            --light-text: #ffffff;
+            --dark-text: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('image1.jpg');
+            background-size: cover;
+            background-position: center;
+            color: var(--light-text);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--light-text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--highlight-color);
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--highlight-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--highlight-color);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1523170335258-f5ed11844a49?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--light-text);
+            margin-top: 60px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero h1 span {
+            color: var(--highlight-color);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--highlight-color);
+            color: var(--light-text);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }
+
+        .btn:hover {
+            background: #d13354;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--light-text);
+        }
+
+        .btn-outline:hover {
+            background: var(--light-text);
+            color: var(--dark-text);
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+        }
+
+        .section-title span {
+            color: var(--highlight-color);
+        }
+
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .category-tab {
+            padding: 0.8rem 2rem;
+            margin: 0 0.5rem;
+            background: #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .category-tab.active {
+            background: var(--highlight-color);
+            color: white;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--light-text);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-img {
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--highlight-color);
+            margin-bottom: 1rem;
+        }
+
+        .product-desc {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            color: var(--light-text);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact {
+            background-color: var(--light-text);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            flex: 1;
+            min-width: 250px;
+            background: var(--primary-color);
+            color: var(--light-text);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 1rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-card i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--highlight-color);
+        }
+
+        .contact-card h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer {
+            background: var(--primary-color);
+            color: var(--light-text);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .footer-links li {
+            margin: 0 1rem;
+        }
+
+        .footer-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--highlight-color);
+        }
+
+        .social-links {
+            margin: 1.5rem 0;
+        }
+
+        .social-links a {
+            display: inline-block;
+            color: var(--light-text);
+            background: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 50%;
+            margin: 0 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--highlight-color);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            margin-top: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+            animation: modalopen 0.5s;
+        }
+
+        @keyframes modalopen {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            color: #aaa;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: var(--highlight-color);
+        }
+
+        .modal-body {
+            margin: 2rem 0;
+        }
+
+        /* Cart */
+        .cart-icon {
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: var(--highlight-color);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        /* Checkout */
+        .checkout-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .checkout-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+
+        .checkout-summary {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .checkout-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .checkout-total {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            text-align: right;
+        }
+
+        /* Checkout Form */
+        .checkout-form {
+            margin-top: 2rem;
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -15px;
+        }
+
+        .form-col {
+            flex: 1;
+            min-width: 250px;
+            padding: 0 15px;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--accent-color);
+            outline: none;
+        }
+
+        .card-element {
+            background: white;
+            padding: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-bottom: 1.5rem;
+        }
+
+        .payment-methods {
+            margin: 2rem 0;
+        }
+
+        .payment-method {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            cursor: pointer;
+        }
+
+        .payment-method input {
+            margin-right: 10px;
+        }
+
+        /* PayPal Button Container */
+        #paypal-button-container {
+            margin-top: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--secondary-color);
+                padding: 1rem 0;
+            }
+
+            .nav-links.active li {
+                margin: 0;
+                padding: 0.8rem 2rem;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+            }
+
+            .category-tabs {
+                flex-wrap: wrap;
+            }
+
+            .category-tab {
+                margin-bottom: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="#" class="logo"><i class="fas fa-star"></i>12<span>Stars</span></a>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li>
+                    <a href="#" class="cart-icon" id="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Timeless Elegance <span>Redefined</span></h1>
+            <p>Discover our exquisite collection of premium watches that combine precision engineering with stunning design.</p>
+            <a href="#products" class="btn">Shop Now</a>
+            <a href="#contact" class="btn btn-outline">Contact Us</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="section" id="products">
+        <div class="container">
+            <h2 class="section-title">Our <span>Collection</span></h2>
+            
+            <div class="category-tabs">
+                <div class="category-tab active" data-category="men">Men's Watches</div>
+                <div class="category-tab" data-category="women">Women's Watches</div>
+            </div>
+            
+            <div class="products" id="men-watches">
+                <!-- Men's Watches -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Classic Elegance Watch">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Classic Elegance</h3>
+                        <p class="product-price">$249.99</p>
+                        <p class="product-desc">A timeless piece with stainless steel casing and genuine leather strap.</p>
+                        <button class="btn add-to-cart" data-id="1" data-name="Classic Elegance" data-price="249.99">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Sport Pro Watch">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Sport Pro</h3>
+                        <p class="product-price">$199.99</p>
+                        <p class="product-desc">Built for athletes with water resistance and shockproof features.</p>
+                        <button class="btn add-to-cart" data-id="2" data-name="Sport Pro" data-price="199.99">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1551818255-e6e10975bc17?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Luxury Gold Watch">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Luxury Gold</h3>
+                        <p class="product-price">$499.99</p>
+                        <p class="product-desc">24k gold plated with diamond markers for the ultimate luxury statement.</p>
+                        <button class="btn add-to-cart" data-id="3" data-name="Luxury Gold" data-price="499.99">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1539874754764-5a96559165b0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Minimalist Black Watch">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Minimalist Black</h3>
+                        <p class="product-price">$179.99</p>
+                        <p class="product-desc">Sleek and simple design for everyday wear with premium materials.</p>
+                        <button class="btn add-to-cart" data-id="4" data-name="Minimalist Black" data-price="179.99">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1557531365-e8b22d93dbd0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Chronograph Silver Watch">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Chronograph Silver</h3>
+                        <p class="product-price">$299.99</p>
+                        <p class="product-desc">Precision chronograph with multiple dials and tachymeter bezel.</p>
+                        <button class="btn add-to-cart" data-id="5" data-name="Chronograph Silver" data-price="299.99">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1548169874-53e85f753f1e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Rose Gold Classic Watch">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Rose Gold Classic</h3>
+                        <p class="product-price">$349.99</p>
+                        <p class="product-desc">Elegant rose gold finish with mother-of-pearl dial and date display.</p>
+                        <button class="btn add-to-cart" data-id="6" data-name="Rose Gold Classic" data-price="349.99">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Aviator Pro Watch">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Aviator Pro</h3>
+                        <p class="product-price">$399.99</p>
+                        <p class="product-desc">Inspired by aviation with chronograph functions and luminous hands.</p>
+                        <button class="btn add-to-cart" data-id="7" data-name="Aviator Pro" data-price="399.99">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Diver's Elite Watch">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Diver's Elite</h3>
+                        <p class="product-price">$449.99</p>
+                        <p class="product-desc">Professional diving watch with 300m water resistance and unidirectional bezel.</p>
+                        <button class="btn add-to-cart" data-id="8" data-name="Diver's Elite" data-price="449.99">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1549972574-8e3e1ed6a347?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Executive Titanium Watch">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Executive Titanium</h3>
+                        <p class="product-price">$599.99</p>
+                        <p class="product-desc">Lightweight titanium case with sapphire crystal and perpetual calendar.</p>
+                        <button class="btn add-to-cart" data-id="9" data-name="Executive Titanium" data-price="599.99">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1557531365-bf0a8180a6c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Vintage Heritage Watch">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Vintage Heritage</h3>
+                        <p class="product-price">$279.99</p>
+                        <p class="product-desc">Classic design inspired by 1960s watchmaking with modern reliability.</p>
+                        <button class="btn add-to-cart" data-id="10" data-name="Vintage Heritage" data-price="279.99">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="products" id="women-watches" style="display: none;">
+                <!-- Women's Watches -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Elegance Pearl Watch">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Elegance Pearl</h3>
+                        <p class="product-price">$229.99</p>
+                        <p class="product-desc">Delicate mother-of-pearl dial with diamond hour markers and rose gold case.</p>
+                        <button class="btn add-to-cart" data-id="11" data-name="Elegance Pearl" data-price="229.99">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1551818255-1757dfb29979?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Slim Rose Gold Watch">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Slim Rose Gold</h3>
+                        <p class="product-price">$199.99</p>
+                        <p class="product-desc">Ultra-thin profile with rose gold plating and genuine leather strap.</p>
+                        <button class="btn add-to-cart" data-id="12" data-name="Slim Rose Gold" data-price="199.99">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1547996160-81dcc2bc1d5f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Diamond Bezel Watch">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Diamond Bezel</h3>
+                        <p class="product-price">$699.99</p>
+                        <p class="product-desc">Luxurious watch with genuine diamond bezel and sapphire crystal.</p>
+                        <button class="btn add-to-cart" data-id="13" data-name="Diamond Bezel" data-price="699.99">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Petite Silver Watch">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Petite Silver</h3>
+                        <p class="product-price">$159.99</p>
+                        <p class="product-desc">Smaller case size perfect for slender wrists with silver-tone finish.</p>
+                        <button class="btn add-to-cart" data-id="14" data-name="Petite Silver" data-price="159.99">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1596704017254-975dad802f4f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Ceramic White Watch">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Ceramic White</h3>
+                        <p class="product-price">$349.99</p>
+                        <p class="product-desc">Scratch-resistant ceramic case with Swarovski crystal markers.</p>
+                        <button class="btn add-to-cart" data-id="15" data-name="Ceramic White" data-price="349.99">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1596703264022-56b5e5c9f2a4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Fashion Chronograph Watch">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Fashion Chronograph</h3>
+                        <p class="product-price">$279.99</p>
+                        <p class="product-desc">Stylish chronograph with colorful dial options and stainless steel bracelet.</p>
+                        <button class="btn add-to-cart" data-id="16" data-name="Fashion Chronograph" data-price="279.99">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Moonphase Watch">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Moonphase Watch</h3>
+                        <p class="product-price">$499.99</p>
+                        <p class="product-desc">Elegant moonphase complication with guilloché dial and alligator strap.</p>
+                        <button class="btn add-to-cart" data-id="17" data-name="Moonphase Watch" data-price="499.99">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1596703264022-56b5e5c9f2a4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Bangle Watch">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Bangle Watch</h3>
+                        <p class="product-price">$229.99</p>
+                        <p class="product-desc">Combination watch and jewelry piece with flexible bangle design.</p>
+                        <button class="btn add-to-cart" data-id="18" data-name="Bangle Watch" data-price="229.99">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1596703264022-56b5e5c9f2a4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Rose Gold Mesh Watch">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Rose Gold Mesh</h3>
+                        <p class="product-price">$179.99</p>
+                        <p class="product-desc">Ultra-thin mesh bracelet with minimalist dial and rose gold accents.</p>
+                        <button class="btn add-to-cart" data-id="19" data-name="Rose Gold Mesh" data-price="179.99">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://images.unsplash.com/photo-1596703264022-56b5e5c9f2a4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Diamond Accent Watch">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Diamond Accent</h3>
+                        <p class="product-price">$399.99</p>
+                        <p class="product-desc">Elegant watch with diamond markers at 12, 3, 6, and 9 o'clock positions.</p>
+                        <button class="btn add-to-cart" data-id="20" data-name="Diamond Accent" data-price="399.99">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title">About <span>12Stars</span></h2>
+            <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <p style="margin-bottom: 2rem; font-size: 1.1rem;">
+                    12Stars Watches was founded with a vision to create timepieces that blend precision engineering with artistic design. 
+                    Each watch in our collection is crafted with meticulous attention to detail, using only the finest materials.
+                </p>
+                <p style="margin-bottom: 2rem; font-size: 1.1rem;">
+                    Our name "12Stars" represents the 12-hour clock face and the stellar quality we strive to deliver with every product. 
+                    Whether you're looking for a classic dress watch or a rugged sports timepiece, we have something to suit every style and occasion.
+                </p>
+                <a href="#products" class="btn">Explore Our Collection</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta">
+        <div class="cta-content">
+            <h2>Ready
